@@ -7,7 +7,7 @@ class vergelijk():
     def __init__(self):
         pass
 
-    def __laden__(self, delSelf= 300, path_vcf="/Users/martijn/spark-1.5.2-bin-hadoop2.6/bin/eerstcukmoluitkomst/part-00000", path_vcf_t="../vcfverelijk/simu.truth.vcf", chr="21"):
+    def __laden__(self, delSelf, path_vcf, path_vcf_t, chr):
         self.vcft = vcf(path_vcf_t, chr)
         self.vcft.deletion(delSelf)
         self.vcft.lees_vcf()
@@ -76,9 +76,7 @@ class vergelijk():
 
 
 def main():
-    reken = vergelijk()
-    reken.__laden__()
-    reken.overlap()
+    print("no main")
 
 if __name__ == "__main__":
     main()
