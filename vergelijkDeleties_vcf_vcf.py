@@ -1,17 +1,17 @@
 #!/usr/bin/env python
-#from vcf_vcf.vcf import vcf
-from vcf import vcf
+#from vcf_vcf.vcf import Vcf
+from vcf import Vcf
 
-class vergelijk():
+class Vergelijk():
 
     def __init__(self):
         pass
 
     def __laden__(self, delSelf, path_vcf, path_vcf_t, chr):
-        self.vcft = vcf(path_vcf_t, chr)
+        self.vcft = Vcf(path_vcf_t, chr)
         self.vcft.deletion(delSelf)
         self.vcft.lees_vcf()
-        self.vcf = vcf(path_vcf, chr)
+        self.vcf = Vcf(path_vcf, chr)
         self.vcf.deletion(delSelf)
         self.vcf.lees_vcf()
 
@@ -59,15 +59,15 @@ class vergelijk():
             if mis:
                 missed += [intervals_vcft]
         if printen:
-            print("missed "+ str(missed.__len__()))
-            print("true_positives "+ str(true_positives.__len__()))
-            print("false_positives "+ str(false_positives.__len__()))
+            print("missed "+str(missed.__len__()))
+            print("true_positives "+str(true_positives.__len__()))
+            print("false_positives "+str(false_positives.__len__()))
             print("multiple_true_positives "+str(multiple_true_positives.__len__()))
-            print("number of intervals vcf "+ str(self.vcf.intervals_vcf.__len__()))
-            print("number of intervals vcft "+ str(self.vcf.intervals_vcft.__len__()))
-            print("missed "+ str(missed))
-            print("true_positives "+ str(true_positives))
-            print("false_positives "+ str(false_positives))
+            print("number of intervals vcf "+str(self.vcf.intervals_vcf.__len__()))
+            print("number of intervals vcft "+str(self.vcf.intervals_vcft.__len__()))
+            print("missed "+str(missed))
+            print("true_positives "+str(true_positives))
+            print("false_positives "+str(false_positives))
             print("multiple_true_positives "+str(multiple_true_positives))
         self.missed = missed
         self.true_positives = true_positives

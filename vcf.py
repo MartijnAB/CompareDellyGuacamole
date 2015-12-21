@@ -2,8 +2,7 @@
 import re, sys
 
 
-class vcf():
-
+class Vcf():
 
     def __init__(self, file, chromosomes= False):
         self.file = file
@@ -15,7 +14,7 @@ class vcf():
                 fill = fill[:-1]
             else:
                 fill += chromosomes
-            self.chromosome =  fill+")" # chromosme numbers 1,2,4
+            self.chromosome = fill+")"# chromosme numbers 1,2,4
 
     def deletion(self, size):
         file = open(self.file, "r")
@@ -46,7 +45,7 @@ class vcf():
 
     def lees_vcf(self):
         if self.vcf_exists:
-            self.intervals_vcf = [ [int(number[0]), int(number[1])] for number in [numbers.split("|") for numbers in self.v_c_f.split("\n")][:-1]]
+            self.intervals_vcf = [[int(number[0]), int(number[1])] for number in [numbers.split("|") for numbers in self.v_c_f.split("\n")][:-1]]
         else:
             print("no vcf")
             sys.exit(0)

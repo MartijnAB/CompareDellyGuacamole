@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 #from vcf_guacemole.vcf import vcf
 #from vcf_guacemole.guacemole import guacemole
-from vcf import vcf
-from guacemole import guacemole
+from vcf import Vcf
+from guacemole import Guacemole
 
 
 class vergelijk():
@@ -13,10 +13,10 @@ class vergelijk():
     def __laden__(self, delSelf, path_Guacemole, path_vcf, chr):
         print(path_Guacemole)
 
-        self.vcf = vcf(path_vcf, chr)
+        self.vcf = Vcf(path_vcf, chr)
         self.vcf.deletion(delSelf)
         self.vcf.lees_vcf()
-        self.guacemole = guacemole(path_Guacemole)
+        self.guacemole = Guacemole(path_Guacemole)
         self.guacemole.__load__()
         self.guacemole.lees_guacemole(delSelf)
 
@@ -64,15 +64,15 @@ class vergelijk():
             if mis:
                 missed += [intervals_vcf]
         if printen:
-            print("missed "+ str(missed.__len__()))
-            print("true_positives "+ str(true_positives.__len__()))
-            print("false_positives "+ str(false_positives.__len__()))
+            print("missed "+str(missed.__len__()))
+            print("true_positives "+str(true_positives.__len__()))
+            print("false_positives "+str(false_positives.__len__()))
             print("multiple_true_positives "+str(multiple_true_positives.__len__()))
-            print("number of intervals guacemole "+ str(self.guacemole.intervals_guacemole.__len__()))
-            print("number of intervals vcf "+ str(self.vcf.intervals_vcf.__len__()))
-            print("missed "+ str(missed))
-            print("true_positives "+ str(true_positives))
-            print("false_positives "+ str(false_positives))
+            print("number of intervals guacemole "+str(self.guacemole.intervals_guacemole.__len__()))
+            print("number of intervals vcf "+str(self.vcf.intervals_vcf.__len__()))
+            print("missed "+str(missed))
+            print("true_positives "+str(true_positives))
+            print("false_positives "+str(false_positives))
             print("multiple_true_positives "+str(multiple_true_positives))
         self.missed = missed
         self.true_positives = true_positives
