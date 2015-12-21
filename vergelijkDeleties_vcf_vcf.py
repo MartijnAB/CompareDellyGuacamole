@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #from vcf_vcf.vcf import vcf
 from vcf import vcf
 

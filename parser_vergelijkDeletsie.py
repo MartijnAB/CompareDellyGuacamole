@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from verlglijkDeletsie_vcf_guacemole import vergelijk
 import argparse
 

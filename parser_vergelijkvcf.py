@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from vergelijkDeleties_vcf_vcf import vergelijk
 import argparse
 

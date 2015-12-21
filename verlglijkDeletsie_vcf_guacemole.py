@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #from vcf_guacemole.vcf import vcf
 #from vcf_guacemole.guacemole import guacemole
 from vcf import vcf
