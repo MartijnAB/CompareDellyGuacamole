@@ -8,6 +8,7 @@ class Pars:
         print("start programa")
         self.rtyp = "vcf"
         self.atyp = "vcf"
+        self.out = ""
 
     def load_arguments(self):
         parser = argparse.ArgumentParser(description='alt vs ref')
@@ -15,6 +16,7 @@ class Pars:
         parser.add_argument('-ref', type=str, help='ref vcf or out guacemole')
         parser.add_argument('-atyp', type=str, help='Typ alt. Is it vcf or guacemele?\tdefault = vcf')
         parser.add_argument('-rtyp', type=str, help='Typ ref. Is it vcf or guacemele?\tdefault = vcf')
+        parser.add_argument('-out', type=str, help='pat output.\tdefault = ""')
         args = parser.parse_args()
         if args.alt == None or args.ref == None:
             print("you must specify an -alt and -ref otherwise the program stops")
@@ -28,6 +30,8 @@ class Pars:
         if args.atyp is not None:
             if args.atyp.lower() == "vcf" or "guacemole":
                 self.atyp = args.rtyp
+        if args.out is not None:
+            self.out = args.out
 
 
 def main():
