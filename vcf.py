@@ -51,16 +51,7 @@ class vcf():
 
 
 def main():
-    print("a")
-    test = vcf("../vcfverelijk/simu.truth.vcf", "20,21")
-    print(test.chromosome)
-    test.deletion(300)
-    print(test.v_c_f)
-    print("aaaa")
-    test.lees_vcf()
-    print(test.intervals_vcf)
-    print("a")
-
+    print("no main")
 
 
 

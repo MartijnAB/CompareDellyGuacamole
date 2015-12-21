@@ -23,12 +23,8 @@ class guacemole():
 
 
 def main():
-    print("a")
-    test = guacemole("/Users/martijn/spark-1.5.2-bin-hadoop2.6/bin/eerstcukmoluitkomst/part-00000")
-    test.__load__()
-    test.lees_guacemole()
-    print(test.getaallen_guacemole)
-    print("a")
+    print(" no main ")
+
 
 
 
