@@ -4,11 +4,11 @@ import re, sys
 
 class Vcf():
 
-    def __init__(self, file, chromosomes= False):
+    def __init__(self, file, chromosomes=False):
         self.file = file
         if chromosomes:
             fill = "("
-            if re.match(",",chromosomes):
+            if re.match(",", chromosomes):
                 for number in chromosomes.split(","):
                     fill += number + "|"
                 fill = fill[:-1]
@@ -23,7 +23,7 @@ class Vcf():
         if vcfContent.startswith("##fileformat=VCFv4.0"):
             for x in re.findall("\n"+self.chromosome+"\t(\d+)\t.+\t([ATCG]+)\t([ATCG]+).+", vcfContent):
                 if x[2].__len__() > x[3].__len__():
-                    if (x[2].__len__() - x[3].__len__()) >size:
+                    if (x[2].__len__() - x[3].__len__()) > size:
                         if "," not in x[-1]:
                             text += x[1]+"|"+str(int(x[1])+x[2].__len__())+"\n"
         if vcfContent.startswith("##fileformat=VCFv4.1"):
