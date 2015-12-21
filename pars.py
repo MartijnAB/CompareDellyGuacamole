@@ -17,7 +17,7 @@ class Pars:
         parser.add_argument('-ref', type=str, help='ref vcf or out guacemole.')
         parser.add_argument('-atyp', type=str, help='Typ alt. Is it vcf or guacemele?\tdefault = vcf')
         parser.add_argument('-rtyp', type=str, help='Typ ref. Is it vcf or guacemele?\tdefault = vcf')
-        parser.add_argument('-size', type=int, help='The min size of a deletion.')
+        parser.add_argument('-size', type=int, help='The min size of a deletion.\tdefault = 300')
         parser.add_argument('-out', type=str, help='Pat output.\tdefault = ""')
         args = parser.parse_args()
         if args.alt is None or args.ref is None:
