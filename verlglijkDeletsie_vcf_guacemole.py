@@ -7,12 +7,8 @@ from guacemole import Guacemole
 
 class vergelijk():
 
-    def __init__(self):
-        pass
-
     def __laden__(self, delSelf, path_Guacemole, path_vcf, chr):
         print(path_Guacemole)
-
         self.vcf = Vcf(path_vcf, chr)
         self.vcf.deletion(delSelf)
         self.vcf.lees_vcf()
