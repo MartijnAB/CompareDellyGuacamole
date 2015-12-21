@@ -25,14 +25,16 @@ class Pars:
         self.alt = args.alt
         self.ref = args.ref
         if args.rtyp is not None:
-            if args.rtyp.lower() == "vcf" or args.rtyp.lower() == "guacemole":
+            rtyp = args.rtyp.lower()
+            if rtyp == "vcf" or rtyp == "guacemole":
                 self.rtyp = args.rtyp
             else:
                 print('rtpy must be vcf or guacemole\t-h = help')
                 sys.exit()
         if args.atyp is not None:
+            atyp = args.atyp
             print("nul")
-            if args.atyp.lower() == "vcf" or args.atyp.lower() == "guacemole":
+            if atyp == "vcf" or atyp == "guacemole":
                 print("een")
                 self.atyp = args.rtyp
             else:
