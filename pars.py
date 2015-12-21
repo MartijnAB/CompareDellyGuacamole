@@ -22,10 +22,12 @@ class Pars:
             sys.exit()
         self.alt = args.alt
         self.ref = args.ref
-        if args.rtyp.lower() == "vcf" or "guacemole":
-            self.rtyp = args.rtyp
-        if args.atyp.lower() == "vcf" or "guacemole":
-            self.atyp = args.rtyp
+        if args.rtyp is not None:
+            if args.rtyp.lower() == "vcf" or "guacemole":
+                self.rtyp = args.rtyp
+        if args.atyp is not None:
+            if args.atyp.lower() == "vcf" or "guacemole":
+                self.atyp = args.rtyp
 
 
 def main():
