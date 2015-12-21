@@ -2,7 +2,6 @@
 from verlglijkDeletsie_vcf_guacemole import vergelijk
 import argparse
 
-
 class parser():
 
     def __init__(self):
@@ -36,15 +35,8 @@ class parser():
                  writ.write("multiple_true_positives "+str(runSelf.multiple_true_positives)+"\n")
             writ.close()
 
-
-
 def main():
     run = parser()
-
-
-
-
-
 
 if __name__ == "__main__":
     main()

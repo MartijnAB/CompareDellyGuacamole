@@ -4,6 +4,7 @@
 from vcf import vcf
 from guacemole import guacemole
 
+
 class vergelijk():
 
     def __init__(self):
@@ -19,7 +20,6 @@ class vergelijk():
         self.guacemole.__load__()
         self.guacemole.lees_guacemole(delSelf)
 
-
     def positive_or_negative(self, interval_vcf_start, interval_vcf_stop, interval_guacemole_start, interval_guacemole_stop):
         interval_vcf = interval_vcf_stop - interval_vcf_start
         interval_guacemole = interval_guacemole_stop - interval_guacemole_start
@@ -34,15 +34,11 @@ class vergelijk():
             else:
                 return False
 
-
     def overlap(self, printen= True):
         missed = []
         true_positives = {}
         false_positives = []
         multiple_true_positives = {}
-
-
-
         for intervals_guacemole in self.guacemole.intervals_guacemole:
             positive = False
             positives = False
@@ -67,7 +63,6 @@ class vergelijk():
                         mis = False
             if mis:
                 missed += [intervals_vcf]
-
         if printen:
             print("missed "+ str(missed.__len__()))
             print("true_positives "+ str(true_positives.__len__()))
@@ -89,12 +84,6 @@ def main():
     reken = vergelijk()
     reken.__laden__()
     reken.overlap()
-
-
-
-
-
-
 
 if __name__ == "__main__":
     main()

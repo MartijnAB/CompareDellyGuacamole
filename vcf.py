@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import re, sys
+
+
 class vcf():
 
 
@@ -33,7 +35,6 @@ class vcf():
         self.vcf_exists = True
         file.close()
 
-
     def make_file(self, paht="uikomst.simu.truth.vcf.chr20.posie.allen.deleetsie"):
         if self.vcf_exists:
             mijntekxt = open(paht, "w")
@@ -53,10 +54,6 @@ class vcf():
 
 def main():
     print("no main")
-
-
-
-
 
 if __name__ == "__main__":
     main()

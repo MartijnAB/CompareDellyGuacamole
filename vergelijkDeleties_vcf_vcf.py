@@ -15,7 +15,6 @@ class vergelijk():
         self.vcf.deletion(delSelf)
         self.vcf.lees_vcf()
 
-
     def positive_or_negative(self, interval_vcft_start, interval_vcft_stop, interval_vcf_start, interval_vcf_stop):
         interval_vcft = interval_vcft_stop - interval_vcft_start
         interval_vcf = interval_vcf_stop - interval_vcf_start
@@ -30,15 +29,11 @@ class vergelijk():
             else:
                 return False
 
-
     def overlap(self, printen= True):
         missed = []
         true_positives = {}
         false_positives = []
         multiple_true_positives = {}
-
-
-
         for intervals_vcf in self.vcf.intervals_vcf:
             positive = False
             positives = False
@@ -63,7 +58,6 @@ class vergelijk():
                         mis = False
             if mis:
                 missed += [intervals_vcft]
-
         if printen:
             print("missed "+ str(missed.__len__()))
             print("true_positives "+ str(true_positives.__len__()))
@@ -85,12 +79,6 @@ def main():
     reken = vergelijk()
     reken.__laden__()
     reken.overlap()
-
-
-
-
-
-
 
 if __name__ == "__main__":
     main()

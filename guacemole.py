@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import re
+
+
 class guacemole():
 
     def __init__(self, path):
         self.path = path
-
 
     def __load__(self):
         uikomstguacemoel = open(self.path , "r")
@@ -22,15 +23,8 @@ class guacemole():
                     self.intervals_guacemole += [[GenomeRange[1], GenomeRange[0]]]
 
 
-
 def main():
     print(" no main ")
-
-
-
-
-
-
 
 if __name__ == "__main__":
     main()
