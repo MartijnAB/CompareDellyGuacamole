@@ -16,7 +16,7 @@ class Pars:
 
     def load_arguments(self):
         parser = argparse.ArgumentParser(description='alt vs ref')
-        parser.add_argument('-alt', type=str, help='als vcf or out guacemole.')
+        parser.add_argument('-alt', type=str, help='alt vcf or out guacemole.')
         parser.add_argument('-ref', type=str, help='ref vcf or out guacemole.')
         parser.add_argument('-atyp', type=str, help='Typ alt. Is it vcf or guacemele?\tdefault = vcf')
         parser.add_argument('-rtyp', type=str, help='Typ ref. Is it vcf or guacemele?\tdefault = vcf')
@@ -58,8 +58,8 @@ def outputFile(vergelijk, pat, all):
     writ.write("true_positives " + str(vergelijk.true_positives.__len__()) + "\n")
     writ.write("false_positives " + str(vergelijk.false_positives.__len__()) + "\n")
     writ.write("multiple_true_positives " + str(vergelijk.multiple_true_positives.__len__()) + "\n")
-    writ.write("number of intervals guacemole " + str(vergelijk.guacemole.intervals_guacemole.__len__()) + "\n")
-    writ.write("number of intervals vcf " + str(vergelijk.vcf.intervals_vcf.__len__()) + "\n")
+    writ.write("number of intervals alt " + str(vergelijk.guacemole.intervals_.__len__()) + "\n")
+    writ.write("number of intervals ref " + str(vergelijk.vcf.intervals_vcf.__len__()) + "\n")
     if all:
         writ.write("missed " + str(vergelijk.missed) + "\n")
         writ.write("true_positives " + str(vergelijk.true_positives) + "\n")

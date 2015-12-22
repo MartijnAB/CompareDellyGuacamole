@@ -15,6 +15,8 @@ class Vcf():
             else:
                 fill += chromosomes
             self.chromosome = fill+")"# chromosme numbers 1,2,4
+        else:
+            self.chromosome = "(\d+)"
 
     def deletion(self, size):
         file = open(self.file, "r")
