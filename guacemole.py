@@ -13,14 +13,14 @@ class Guacemole():
         uikomstguacemoel.close()
 
     def lees_guacemole(self, size):
-        self.intervals_guacemole = []
+        self.intervals = []
         for GenomeRange in [[int(numbers.split(",")[0]), int(numbers.split(",")[1])] for numbers in re.findall("\d+,(\d+,\d+)", self.guacemole.split("List")[1])]:
             if GenomeRange[0] < GenomeRange[1]:
                 if (int(GenomeRange[1]) - int(GenomeRange[0])) > size:
-                    self.intervals_guacemole += [GenomeRange]
+                    self.intervals += [GenomeRange]
             else:
                 if (int(GenomeRange[0]) - int(GenomeRange[1])) > size:
-                    self.intervals_guacemole += [[GenomeRange[1], GenomeRange[0]]]
+                    self.intervals += [[GenomeRange[1], GenomeRange[0]]]
 
 
 def main():

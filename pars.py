@@ -1,8 +1,8 @@
 import argparse
 import sys
-import vergelijkDeleties_vcf_vcf
-import verlglijkDeletsie_vcf_guacemole
-import vergelijkDeleties_guacemole_guacemole
+import vergelijkDeleties
+import vcf
+import guacemole
 
 
 class Pars:
@@ -22,6 +22,7 @@ class Pars:
         parser.add_argument('-rtyp', type=str, help='Typ ref. Is it vcf or guacemele?\tdefault = vcf')
         parser.add_argument('-size', type=int, help='The min size of a deletion.\tdefault = 300')
         parser.add_argument('-out', type=str, help='Pat output.\tdefault = "out"')
+        parser.add_argument('-printen', type=str, help='Pat output.\tdefault = "out"')
         parser.add_argument('-writing', type=str, help='"none" for no output "all" for all the coordinate '
                                                        'FP, TP, FN, TN et cetera etcetera et cetera etcetera.')
         args = parser.parse_args()
@@ -40,7 +41,7 @@ class Pars:
         if args.atyp is not None:
             atyp = args.atyp.lower()
             if atyp == "vcf" or atyp == "guacemole":
-                self.atyp = rtyp
+                self.atyp = atyp
             else:
                 print('atpy must be vcf or guacemole.\nuse -h for help')
                 sys.exit()
@@ -52,14 +53,14 @@ class Pars:
             self.writing = args.writing.lower()
 
 
-def outputFile(vergelijk, pat, all):
+def output_file(vergelijk, pat, all):
     writ = open(pat, "w")
     writ.write("missed " + str(vergelijk.missed.__len__()) + "\n")
     writ.write("true_positives " + str(vergelijk.true_positives.__len__()) + "\n")
     writ.write("false_positives " + str(vergelijk.false_positives.__len__()) + "\n")
     writ.write("multiple_true_positives " + str(vergelijk.multiple_true_positives.__len__()) + "\n")
-    writ.write("number of intervals alt " + str(vergelijk.guacemole.intervals_.__len__()) + "\n")
-    writ.write("number of intervals ref " + str(vergelijk.vcf.intervals_vcf.__len__()) + "\n")
+    writ.write("number of intervals alt " + str(vergelijk.alt.intervals.__len__()) + "\n")
+    writ.write("number of intervals ref " + str(vergelijk.ref.intervals.__len__()) + "\n")
     if all:
         writ.write("missed " + str(vergelijk.missed) + "\n")
         writ.write("true_positives " + str(vergelijk.true_positives) + "\n")
@@ -68,31 +69,59 @@ def outputFile(vergelijk, pat, all):
     writ.close()
 
 
+def make_vcf(alt_ref, sizeDel):
+    run_vcf = vcf.Vcf(alt_ref)
+    run_vcf.deletion(sizeDel)
+    # TODO: kontroleer of het een vcf is
+    run_vcf.lees_vcf()
+    return run_vcf
+
+
+def make_guacemole(alt_ref, sizeDel):
+    run_guacemole = guacemole.Guacemole(alt_ref)
+    run_guacemole.__load__()
+    try:
+        run_guacemole.lees_guacemole(sizeDel)
+    except IndexError:
+        print("your guacemole file does not meet the required -h for help")
+        sys.exit(1)
+    return run_guacemole
+
+
 def main():
     run = Pars()
     run.load_arguments()
-
+    run_verglijk = vergelijkDeleties.Vergelijk()
+    print("start")
+    print(run.atyp + " alt type "+ run.rtyp + " ref type ")
     if run.atyp == run.rtyp:
+        print(" typ ==")
         if run.atyp == "vcf":
-            runVerglijk = vergelijkDeleties_vcf_vcf.Vergelijk()
-            runVerglijk.__laden__(run.sizeDel, run.alt, run.ref)
+            print("typ vcf")
+            run_alt = make_vcf(run.alt, run.sizeDel)
+            run_ref = make_vcf(run.ref, run.sizeDel)
         else:
-            runVerglijk = vergelijkDeleties_guacemole_guacemole.Vergelijk()
-            runVerglijk.__laden__(run.sizeDel, run.alt, run.ref)
-        runVerglijk.overlap()
+            print('typ else')
+            run_alt = make_guacemole(run.alt, run.sizeDel)
+            run_ref = make_guacemole(run.ref, run.sizeDel)
     else:
-        runVerglijk = verlglijkDeletsie_vcf_guacemole.Vergelijk()
+        print(" typ !=")
         if run.atyp == "vcf":
-            runVerglijk.__laden__(run.sizeDel, run.alt, run.ref)
+            print("typ vcf")
+            run_alt = make_vcf(run.alt, run.sizeDel)
+            run_ref = make_guacemole(run.ref, run.sizeDel)
         else:
-            runVerglijk.__laden__(run.sizeDel, run.ref, run.alt)
-        runVerglijk.overlap()
+            print('typ else')
+            run_alt = make_guacemole(run.alt, run.sizeDel)
+            run_ref = make_vcf(run.ref, run.sizeDel)
+    run_verglijk.__laden__(run_alt, run_ref)
+    run_verglijk.overlap()
 
     if run.writing != "none":
         if run.writing == "all":
-            outputFile(runVerglijk, run.out, True)
+            output_file(run_verglijk, run.out, True)
         else:
-            outputFile(runVerglijk, run.out, False)
+            output_file(run_verglijk, run.out, False)
 
 
 if __name__ == '__main__':
