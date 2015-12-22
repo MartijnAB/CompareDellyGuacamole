@@ -1,17 +1,16 @@
 #!/usr/bin/env python
 # from vcf_guacemole.vcf import vcf
 # from vcf_guacemole.guacemole import guacemole
-from vcf import Vcf
 from guacemole import Guacemole
 
 
 class vergelijk():
     def __laden__(self, delSelf, path_Guacemole, path_vcf):
-        # TODO: add chr
+        # TODO: make guacemole
         print(path_Guacemole)
-        self.vcf = Vcf(path_vcf)
-        self.vcf.deletion(delSelf)
-        self.vcf.lees_vcf()
+        self.vcf = Guacemole(path_vcf)
+        self.vcf.__load__()
+        self.vcf.lees_guacemole(delSelf)
         self.guacemole = Guacemole(path_Guacemole)
         self.guacemole.__load__()
         self.guacemole.lees_guacemole(delSelf)
