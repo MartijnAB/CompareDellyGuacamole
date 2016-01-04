@@ -4,14 +4,28 @@ import re
 
 class Guacemole:
     def __init__(self, path):
+        """
+
+        :param path:
+        """
+
         self.path = path
 
     def __load__(self):
-        uikomstguacemoel = open(self.path, "r")
-        self.guacemole = uikomstguacemoel.read()
-        uikomstguacemoel.close()
+        """
+
+        """
+
+        info_guacemole = open(self.path, "r")
+        self.guacemole = info_guacemole.read()
+        info_guacemole.close()
 
     def lees_guacemole(self, size):
+        """
+
+        :param size:
+        """
+
         self.intervals = []
         for GenomeRange in [[int(numbers.split(",")[0]), int(numbers.split(",")[1])] for numbers in re.findall("\d+,(\d+,\d+)", self.guacemole.split("List")[1])]:
             if GenomeRange[0] < GenomeRange[1]:

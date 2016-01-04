@@ -5,6 +5,11 @@ import sys
 
 class Vcf:
     def __init__(self, file, chromosomes=False):
+        """
+
+        :param file:
+        :param chromosomes:
+        """
         self.file = file
         if chromosomes:
             fill = "("
@@ -19,6 +24,10 @@ class Vcf:
             self.chromosome = "(\d+)"
 
     def deletion(self, size):
+        """
+
+        :param size:
+        """
         file = open(self.file, "r")
         vcf_content = file.read()
         text = ""
@@ -42,6 +51,9 @@ class Vcf:
         file.close()
 
     def read_vcf(self):
+        """
+
+        """
         if self.vcf_exists:
             self.intervals = [[int(number[0]), int(number[1])] for number in
                               [numbers.split("|") for numbers in self.v_c_f.split("\n")][:-1]]
