@@ -21,16 +21,21 @@ class Vcf():
         file = open(self.file, "r")
         vcfContent = file.read()
         text = ""
+        not_valid_vcf = True
         if vcfContent.startswith("##fileformat=VCFv4.0"):
+            not_valid_vcf = False
             for x in re.findall("\n" + self.chromosome + "\t(\d+)\t.+\t([ATCG]+)\t([ATCG]+).+", vcfContent):
                 if x[2].__len__() > x[3].__len__():
                     if (x[2].__len__() - x[3].__len__()) > size:
                         if "," not in x[-1]:
                             text += x[1] + "|" + str(int(x[1]) + x[2].__len__()) + "\n"
         if vcfContent.startswith("##fileformat=VCFv4.1"):
+            not_valid_vcf = False
             for x in re.findall("\n" + self.chromosome + "\t(\d+)\t.+\<DEL\>.+END=(\d+).+", vcfContent):
                 if (int(x[2]) - int(x[1])) > size:
                     text += x[1] + "|" + x[2] + "\n"
+        if not_valid_vcf:
+            raise TypeError(" vcf is not 4.0 or 4.1 ")
         self.v_c_f = text
         self.vcf_exists = True
         file.close()

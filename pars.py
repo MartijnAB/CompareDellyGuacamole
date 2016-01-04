@@ -71,7 +71,11 @@ def output_file(vergelijk, pat, all):
 
 def make_vcf(alt_ref, sizeDel):
     run_vcf = vcf.Vcf(alt_ref)
-    run_vcf.deletion(sizeDel)
+    try:
+        run_vcf.deletion(sizeDel)
+    except TypeError:
+        print("your vcf file does not meet the required -h for help")
+        sys.exit(1)
     # TODO: kontroleer of het een vcf is
     run_vcf.lees_vcf()
     return run_vcf
@@ -93,7 +97,7 @@ def main():
     run.load_arguments()
     run_verglijk = vergelijkDeleties.Vergelijk()
     print("start")
-    print(run.atyp + " alt type "+ run.rtyp + " ref type ")
+    print(run.atyp + " alt type " + run.rtyp + " ref type ")
     if run.atyp == run.rtyp:
         print(" typ ==")
         if run.atyp == "vcf":
