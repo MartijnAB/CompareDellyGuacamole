@@ -1,5 +1,5 @@
-class Vergelijk():
-    def __laden__(self, alt, ref):
+class Compare():
+    def __load__(self, alt, ref):
         self.alt = alt
         self.ref = ref
 
@@ -19,7 +19,7 @@ class Vergelijk():
             else:
                 return False
 
-    def overlap(self, printen=True):
+    def overlap(self, printing=True):
         missed = []
         true_positives = {}
         false_positives = []
@@ -50,7 +50,7 @@ class Vergelijk():
                         mis = False
             if mis:
                 missed += [intervals_ref]
-        if printen:
+        if printing:
             print("missed " + str(missed.__len__()))
             print("true_positives " + str(true_positives.__len__()))
             print("false_positives " + str(false_positives.__len__()))

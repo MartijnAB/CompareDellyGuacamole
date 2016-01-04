@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-import re, sys
+import re
+import sys
 
 
-class Vcf():
+class Vcf:
     def __init__(self, file, chromosomes=False):
         self.file = file
         if chromosomes:
@@ -19,19 +20,19 @@ class Vcf():
 
     def deletion(self, size):
         file = open(self.file, "r")
-        vcfContent = file.read()
+        vcf_content = file.read()
         text = ""
         not_valid_vcf = True
-        if vcfContent.startswith("##fileformat=VCFv4.0"):
+        if vcf_content.startswith("##fileformat=VCFv4.0"):
             not_valid_vcf = False
-            for x in re.findall("\n" + self.chromosome + "\t(\d+)\t.+\t([ATCG]+)\t([ATCG]+).+", vcfContent):
+            for x in re.findall("\n" + self.chromosome + "\t(\d+)\t.+\t([ATCG]+)\t([ATCG]+).+", vcf_content):
                 if x[2].__len__() > x[3].__len__():
                     if (x[2].__len__() - x[3].__len__()) > size:
                         if "," not in x[-1]:
                             text += x[1] + "|" + str(int(x[1]) + x[2].__len__()) + "\n"
-        if vcfContent.startswith("##fileformat=VCFv4.1"):
+        if vcf_content.startswith("##fileformat=VCFv4.1"):
             not_valid_vcf = False
-            for x in re.findall("\n" + self.chromosome + "\t(\d+)\t.+\<DEL\>.+END=(\d+).+", vcfContent):
+            for x in re.findall("\n" + self.chromosome + "\t(\d+)\t.+\<DEL\>.+END=(\d+).+", vcf_content):
                 if (int(x[2]) - int(x[1])) > size:
                     text += x[1] + "|" + x[2] + "\n"
         if not_valid_vcf:
@@ -40,16 +41,7 @@ class Vcf():
         self.vcf_exists = True
         file.close()
 
-    def make_file(self, paht="uikomst.simu.truth.vcf.chr20.posie.allen.deleetsie"):
-        if self.vcf_exists:
-            mijntekxt = open(paht, "w")
-            mijntekxt.write(self.v_c_f)
-            mijntekxt.close()
-        else:
-            print("no vcf")
-            sys.exit(0)
-
-    def lees_vcf(self):
+    def read_vcf(self):
         if self.vcf_exists:
             self.intervals = [[int(number[0]), int(number[1])] for number in
                               [numbers.split("|") for numbers in self.v_c_f.split("\n")][:-1]]

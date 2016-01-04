@@ -2,8 +2,7 @@
 import re
 
 
-class Guacemole():
-
+class Guacemole:
     def __init__(self, path):
         self.path = path
 
