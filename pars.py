@@ -144,6 +144,7 @@ def make_guacemole(alt_ref, size_del):
 
 def main():
     """Runs the program."""
+
     run = Pars()
     run.load_arguments()
     run_comparing = compareDeleties.Compare()
