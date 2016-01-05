@@ -24,14 +24,19 @@ class Guacemole:
         :param size: A int containing the minimum length of a deletion to be reported as a deletion.
         """
 
-        self.intervals = []
+        intervals = []
         for GenomeRange in [[int(numbers.split(",")[0]), int(numbers.split(",")[1])] for numbers in re.findall("\d+,(\d+,\d+)", self.guacemole.split("List")[1])]:
             if GenomeRange[0] < GenomeRange[1]:
                 if (int(GenomeRange[1]) - int(GenomeRange[0])) > size:
-                    self.intervals += [GenomeRange]
+                    intervals += [GenomeRange]
             else:
                 if (int(GenomeRange[0]) - int(GenomeRange[1])) > size:
-                    self.intervals += [[GenomeRange[1], GenomeRange[0]]]
+                    intervals += [[GenomeRange[1], GenomeRange[0]]]
+
+        """This "self" is not created in the __init__ to insure that it is created by this function.
+        That is also the reason of this double definition.
+        """
+        self.intervals = intervals
 
 
 def main():

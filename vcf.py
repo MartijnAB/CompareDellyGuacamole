@@ -48,15 +48,17 @@ class Vcf:
                     text += x[1] + "|" + x[2] + "\n"
         if not_valid_vcf:
             raise TypeError(" vcf is not 4.0 or 4.1 ")
+        """These "self" are not created in the __init__ to insure that the are created by this function."""
         self.v_c_f = text
         self.vcf_exists = True
         file.close()
 
     def read_vcf(self):
-        """This function profits the deletions in the expected format after the function “deletion” has calculated them.
+        """This function profits the deletions in the expected format after the function "deletion" has calculated them.
         """
 
         if self.vcf_exists:
+            """This "self" is not created in the __init__ to insure that it is created by this function."""
             self.intervals = [[int(number[0]), int(number[1])] for number in
                               [numbers.split("|") for numbers in self.v_c_f.split("\n")][:-1]]
         else:

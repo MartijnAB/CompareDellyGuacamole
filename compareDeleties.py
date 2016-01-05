@@ -70,12 +70,15 @@ class Compare:
                         mis = False
             if mis:
                 missed += [intervals_ref]
+
         print("missed " + str(missed.__len__()))
         print("true positives " + str(true_positives.__len__()))
         print("false positives " + str(false_positives.__len__()))
         print("multiple true positives " + str(multiple_true_positives.__len__()))
         print("number of intervals alt " + str(self.alt.intervals.__len__()))
         print("number of intervals ref " + str(self.ref.intervals.__len__()))
+
+        """These "self" are not created in the __init__ to insure that the are created by this function."""
         self.missed = missed
         self.true_positives = true_positives
         self.false_positives = false_positives

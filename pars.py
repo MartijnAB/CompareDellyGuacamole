@@ -7,11 +7,11 @@ import guacemole
 
 
 """
-This program “CompareDellyGuacamole” takes the position of reported deletions (of a minimum length)
+This program "CompareDellyGuacamole" takes the position of reported deletions (of a minimum length)
 in a v.c.f. or Guacamole file en compares them. One file is the reference for the oder, the alternative.
 
-A deletion in the reference that is not in alternative is reported as “missed”,
-A deletion in the alternative that is not in reference is reported as “false positive”.
+A deletion in the reference that is not in alternative is reported as "missed",
+A deletion in the alternative that is not in reference is reported as "false positive".
 A true positive is a reported deletion in the alternative that shares a minimum of one base pair
 whit a reported deletion in the reference.
 
@@ -62,8 +62,8 @@ class Pars:
         if args.alt is None or args.ref is None:
             print("You must specify an -alt and -ref otherwise the program stops.\nuse -h for help")
             sys.exit()
-        self.alt = args.alt  # The definition of “self” not in the __init__ is to insure the definition of valid input
-        self.ref = args.ref  # The definition of “self” not in the __init__ is to insure the definition of valid input
+        self.alt = args.alt  # The definition of "self" not in the __init__ is to insure the definition of valid input
+        self.ref = args.ref  # The definition of "self" not in the __init__ is to insure the definition of valid input
         if args.rtyp is not None:
             rtyp = args.rtyp.lower()
             if rtyp == "vcf" or rtyp == "guacemole":
@@ -87,7 +87,7 @@ class Pars:
 
 
 def output_file(comparing, pat, all):
-    """Write the result in a file en if “all” is True, than the data is also given.
+    """Write the result in a file en if "all" is True, than the data is also given.
     :param comparing: A object of type compareDeleties containing the results.
     :param pat: A string containing the pat of the output file.
     :param all: A boolean that if true leads to the printing of the intervals linked to the reported statistics.
@@ -147,7 +147,6 @@ def main():
 
     run = Pars()
     run.load_arguments()
-    run_comparing = compareDeleties.Compare()
     print("start program CompareDellyGuacamole\n")
     """Depending on the input is decided how to read the files."""
     if run.atyp == run.rtyp:
@@ -164,7 +163,7 @@ def main():
         else:
             run_alt = make_guacemole(run.alt, run.size_del)
             run_ref = make_vcf(run.ref, run.size_del)
-    run_comparing.__init__(run_alt, run_ref)
+    run_comparing = compareDeleties.Compare(run_alt, run_ref)
     run_comparing.overlap()
     """Generate output file or not?"""
     if run.writing != "none":
