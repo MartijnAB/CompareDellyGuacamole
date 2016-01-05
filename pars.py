@@ -8,7 +8,7 @@ import guacemole
 
 """
 This program “CompareDellyGuacamole” takes the position of reported deletions (of a minimum length)
-in a v.c.f. or Guacamole file en compares them.  One file is the reference for the oder, the alternative.
+in a v.c.f. or Guacamole file en compares them. One file is the reference for the oder, the alternative.
 
 A deletion in the reference that is not in alternative is reported as “missed”,
 A deletion in the alternative that is not in reference is reported as “false positive”.
@@ -22,6 +22,13 @@ end the number of deletions in the reference en in the alternative.
 Author: Martijn A B
 
 4-1-2016
+
+
+
+Warning
+
+The only thing that is compared is: is there any position in two reported deletion that have the same index.
+Noting more is don; there are no extra statistics don.
 """
 
 
