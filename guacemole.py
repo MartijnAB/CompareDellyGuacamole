@@ -3,27 +3,25 @@ import re
 
 
 class Guacemole:
+    """This class provide everything needed to get the deletions of a guacemole file."""
+
     def __init__(self, path):
         """
-
-        :param path:
+        :param path: A string containing the path to the guacemole file.
         """
 
         self.path = path
 
     def __load__(self):
-        """
-
-        """
+        """Read the guacemole file."""
 
         info_guacemole = open(self.path, "r")
         self.guacemole = info_guacemole.read()
         info_guacemole.close()
 
-    def lees_guacemole(self, size):
-        """
-
-        :param size:
+    def read_guacemole(self, size):
+        """Find the deletions in the guacemole file, end store the deletions in a variable.
+        :param size: A int containing the minimum length of a deletion to be reported as a deletion.
         """
 
         self.intervals = []

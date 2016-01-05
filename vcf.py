@@ -4,12 +4,14 @@ import sys
 
 
 class Vcf:
+    """This class provide everything needed to get the deletions of a v.c.f. file."""
+
     def __init__(self, file, chromosomes=False):
+        """A not yet in use function to select by chromosome. further, it is a normal __init__.
+        :param file: A string of the pat of the v.c.f. file that contains the reference or the alternative.
+        :param chromosomes: A string containing the required chromosome numbers separate by a comma.
         """
 
-        :param file:
-        :param chromosomes:
-        """
         self.file = file
         if chromosomes:
             fill = "("
@@ -24,10 +26,10 @@ class Vcf:
             self.chromosome = "(\d+)"
 
     def deletion(self, size):
+        """Read a v.c.f. file end depending on the version it used a special regular expressions to find the deletions.
+        :param size: A int containing the minimum length of a deletion to be reported as a deletion.
         """
 
-        :param size:
-        """
         file = open(self.file, "r")
         vcf_content = file.read()
         text = ""
@@ -51,9 +53,9 @@ class Vcf:
         file.close()
 
     def read_vcf(self):
+        """This function profits the deletions in the expected format after the function “deletion” has calculated them.
         """
 
-        """
         if self.vcf_exists:
             self.intervals = [[int(number[0]), int(number[1])] for number in
                               [numbers.split("|") for numbers in self.v_c_f.split("\n")][:-1]]

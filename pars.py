@@ -81,9 +81,9 @@ class Pars:
 
 def output_file(comparing, pat, all):
     """Write the result in a file en if “all” is True, than the data is also given.
-    :param comparing: 
-    :param pat: 
-    :param all: 
+    :param comparing: A object of type compareDeleties containing the results.
+    :param pat: A string containing the pat of the output file.
+    :param all: A boolean that if true leads to the printing of the intervals linked to the reported statistics.
     """
 
     writ = open(pat, "w")
@@ -102,10 +102,10 @@ def output_file(comparing, pat, all):
 
 
 def make_vcf(alt_ref, size_del):
-    """Provide information from a v.c.f. file as a vcf class.
-    :param alt_ref: 
-    :param size_del: 
-    :return: 
+    """Provide information from a v.c.f. file as a Vcf class.
+    :param alt_ref: A string of the pat of the v.c.f. file that contains the reference or the alternative.
+    :param size_del: A int containing the minimum length of a deletion to be reported as a deletion.
+    :return: A object of type Vcf containing the necessary information.
     """
 
     run_vcf = vcf.Vcf(alt_ref)
@@ -119,16 +119,16 @@ def make_vcf(alt_ref, size_del):
 
 
 def make_guacemole(alt_ref, size_del):
-    """Provide information from a guacemole file as a guacemole class.
-    :param alt_ref:
-    :param size_del:
-    :return:
+    """Provide information from a guacemole file as a Guacemole class.
+    :param alt_ref: A string of the pat of the guacemole file that contains the reference or the alternative.
+    :param size_del: A int containing the minimum length of a deletion to be reported as a deletion.
+    :return: A object of type Guacemole containing the necessary information.
     """
 
     run_guacemole = guacemole.Guacemole(alt_ref)
     run_guacemole.__load__()
     try:
-        run_guacemole.lees_guacemole(size_del)
+        run_guacemole.read_guacemole(size_del)
     except IndexError:
         print("your guacemole file does not meet the required -h for help")
         sys.exit(1)
