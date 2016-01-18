@@ -50,11 +50,10 @@ class Pars:
         parser = argparse.ArgumentParser(description='alt vs ref')
         parser.add_argument('-alt', type=str, help='alt vcf or out guacemole.')
         parser.add_argument('-ref', type=str, help='ref vcf or out guacemole.')
-        parser.add_argument('-atyp', type=str, help='Typ alt. Is it vcf or guacemele?\tdefault = vcf')
-        parser.add_argument('-rtyp', type=str, help='Typ ref. Is it vcf or guacemele?\tdefault = vcf')
+        parser.add_argument('-atyp', type=str, help='Typ alt. Is it vcf or guacemole?\tdefault = vcf')
+        parser.add_argument('-rtyp', type=str, help='Typ ref. Is it vcf or guacemole?\tdefault = vcf')
         parser.add_argument('-size', type=int, help='The min size of a deletion.\tdefault = 300')
         parser.add_argument('-out', type=str, help='Pat output.\tdefault = "out"')
-        parser.add_argument('-printen', type=str, help='Pat output.\tdefault = "out"')
         parser.add_argument('-writing', type=str, help='"none" for no output "all" for all the coordinate '
                                                        'FP, TP, FN, TN et cetera etcetera et cetera etcetera.')
         args = parser.parse_args()
